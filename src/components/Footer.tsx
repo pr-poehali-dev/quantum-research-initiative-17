@@ -25,13 +25,18 @@ const Footer = () => {
           <div>
             <h4 className="text-xs font-mono text-muted-foreground mb-4">НАВИГАЦИЯ</h4>
             <ul className="space-y-2">
-              {["Инструменты", "Тарифы", "Отзывы", "О платформе"].map((link) => (
+              {["Инструменты", "Тарифы", "Отзывы"].map((link) => (
                 <li key={link}>
                   <a href="#" className="text-sm hover:text-primary transition-colors">
                     {link}
                   </a>
                 </li>
               ))}
+              <li>
+                <Link to="/about" className="text-sm hover:text-primary transition-colors">
+                  О платформе
+                </Link>
+              </li>
             </ul>
           </div>
 
