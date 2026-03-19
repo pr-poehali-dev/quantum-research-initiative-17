@@ -7,6 +7,7 @@ const tools = [
     version: "V.2.2",
     icon: "Route",
     description: "Моделирование траектории ствола скважины с автоматическим конвертером единиц измерения.",
+    url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/simulator-v2.2.html",
   },
   {
     id: "КАЛЬКУЛЯТОР_ГНКТ",
@@ -14,6 +15,7 @@ const tools = [
     version: "Общий",
     icon: "Calculator",
     description: "Универсальный расчётный инструмент для операций с гибкими насосно-компрессорными трубами.",
+    url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-general.html",
   },
   {
     id: "ВМЕСТИМОСТЬ_V1",
@@ -21,6 +23,7 @@ const tools = [
     version: "V.1",
     icon: "Weight",
     description: "Расчёт внутренней вместимости и массы ГНКТ в системе единиц СИ.",
+    url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-volume-si-v1.html",
   },
 ];
 
@@ -61,9 +64,14 @@ const ToolsSection = () => {
               <h3 className="font-semibold text-lg mb-2">{tool.name}</h3>
               <p className="text-sm text-muted-foreground flex-1">{tool.description}</p>
 
-              <button className="mt-6 w-full border border-border rounded-xl py-2.5 text-xs font-mono tracking-wider hover:bg-secondary transition-colors">
+              <a
+                href={tool.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 w-full border border-border rounded-xl py-2.5 text-xs font-mono tracking-wider hover:bg-secondary transition-colors text-center block"
+              >
                 ОТКРЫТЬ
-              </button>
+              </a>
             </div>
           ))}
         </div>
