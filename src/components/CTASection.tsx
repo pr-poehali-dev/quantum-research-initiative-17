@@ -1,6 +1,10 @@
 import { ArrowRight, BarChart2, Calculator, ClipboardList, Settings, Users } from "lucide-react";
 
-const CTASection = () => {
+interface CTASectionProps {
+  onOpenModal: () => void;
+}
+
+const CTASection = ({ onOpenModal }: CTASectionProps) => {
   return (
     <section className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
@@ -35,7 +39,10 @@ const CTASection = () => {
             <p className="text-muted-foreground mb-8">
               Присоединяйтесь к специалистам, которые уже используют точные расчёты ГНКТ для безопасной и эффективной работы.
             </p>
-            <button className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+            <button
+              onClick={onOpenModal}
+              className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
               Оставить заявку на анализ
               <ArrowRight className="w-4 h-4" />
             </button>
