@@ -59,7 +59,7 @@ const WorkflowSection = () => {
                       <p className="text-xs font-mono text-muted-foreground">ПАРАМЕТРЫ</p>
                       <p className="text-xs font-mono mt-2 text-foreground/70">OD: 2⅞"</p>
                       <p className="text-xs font-mono text-foreground/70">TS-90</p>
-                      <p className="text-xs font-mono text-foreground/70">P: 15 МПа</p>
+                      <p className="text-xs font-mono text-foreground/70">P: 680 МПа</p>
                     </div>
                   )}
                   {step.visual === "calc" && (
