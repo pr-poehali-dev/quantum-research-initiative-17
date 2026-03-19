@@ -10,40 +10,40 @@ interface PricingTier {
 
 const tiers: PricingTier[] = [
   {
-    name: "СТАРТ",
-    price: "1 490 ₽",
-    description: "Для тех, кому нужен второй взгляд.",
+    name: "БАЗОВЫЙ",
+    price: "Бесплатно",
+    description: "Для первичного знакомства с инструментами.",
     features: [
-      "500 ИИ-черновиков в месяц",
-      "Стандартная библиотека тонов",
-      "Интеграция с Gmail",
-      "Chrome-расширение",
-      "История контекста 7 дней",
+      "Базовый расчёт допуска ГНКТ",
+      "До 10 расчётов в месяц",
+      "Стандартные типоразмеры труб",
+      "Экспорт результатов в PDF",
+      "Техподдержка по email",
     ],
   },
   {
-    name: "ПРО",
-    price: "3 990 ₽",
-    description: "Для профессионалов, которые ценят время.",
+    name: "ПРОФИ",
+    price: "Договорная",
+    description: "Для инженеров и сервисных компаний.",
     features: [
-      "Безлимитные ИИ-черновики",
-      "Обучение собственному тону",
-      "Все интеграции",
+      "Безлимитные расчёты",
+      "Полный анализ графиков работы",
+      "Расчёт усталостного ресурса",
+      "Нестандартные типоразмеры",
       "Приоритетная поддержка",
-      "История контекста 30 дней",
     ],
     popular: true,
   },
   {
-    name: "КОМАНДА",
-    price: "7 990 ₽",
-    description: "Для команд, работающих на масштабе.",
+    name: "ЭКСПЕРТИЗА",
+    price: "По запросу",
+    description: "Углублённый анализ от специалистов.",
     features: [
-      "Всё из Про",
-      "Командная работа",
-      "Админ-панель",
-      "SSO и SAML",
-      "Персональный менеджер",
+      "Всё из тарифа Профи",
+      "Персональный инженер-эксперт",
+      "Детальный отчёт с рекомендациями",
+      "Анализ истории эксплуатации",
+      "Консультация онлайн / выезд",
     ],
   },
 ];
@@ -55,17 +55,17 @@ const PricingSection = () => {
         <div className="text-center mb-16">
           <span className="text-xs font-mono text-muted-foreground tracking-wider">ТАРИФЫ</span>
           <h2 className="font-serif text-4xl md:text-5xl mt-4 mb-4">
-            Пишите как профи,
+            Рассчитывайте точно,
             <br />
-            платите разумно
+            действуйте уверенно
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[-2deg] border border-amber-100">
-              <span className="text-xs font-mono">БЕСПЛАТНЫЙ_ПРОБНЫЙ</span>
+              <span className="text-xs font-mono">БЕСПЛАТНЫЙ_СТАРТ</span>
             </div>
-            <p className="text-muted-foreground text-sm">Без скрытых платежей. 14 дней бесплатно</p>
+            <p className="text-muted-foreground text-sm">Без скрытых платежей. Базовые расчёты бесплатно.</p>
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[2deg] border border-amber-100">
-              <span className="text-xs font-mono">ОДОБРЕНО</span>
+              <span className="text-xs font-mono">НАДЁЖНО</span>
             </div>
           </div>
         </div>
@@ -87,8 +87,7 @@ const PricingSection = () => {
               <div className="mb-6">
                 <span className="text-xs font-mono text-muted-foreground">{tier.name}</span>
                 <div className="flex items-baseline gap-1 mt-2">
-                  <span className="text-4xl font-serif">{tier.price}</span>
-                  <span className="text-muted-foreground text-sm">/мес</span>
+                  <span className="text-3xl font-serif">{tier.price}</span>
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{tier.description}</p>
               </div>
@@ -96,7 +95,7 @@ const PricingSection = () => {
               <div className="space-y-3 flex-1">
                 {tier.features.map((feature) => (
                   <div key={feature} className="flex items-center gap-3">
-                    <div className="w-4 h-4 rounded-full bg-accent flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-accent flex items-center justify-center flex-shrink-0">
                       <Check className="w-2.5 h-2.5 text-accent-foreground" />
                     </div>
                     <span className="text-sm">{feature}</span>
@@ -111,7 +110,7 @@ const PricingSection = () => {
                     : "border border-border hover:bg-secondary"
                 }`}
               >
-                НАЧАТЬ
+                {tier.name === "ЭКСПЕРТИЗА" ? "ОСТАВИТЬ ЗАЯВКУ" : "НАЧАТЬ"}
               </button>
             </div>
           ))}
