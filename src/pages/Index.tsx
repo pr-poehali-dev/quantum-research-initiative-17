@@ -19,7 +19,7 @@ const Index = () => {
       <WorkflowSection />
       <FeaturesSection />
       <ToolsSection />
-      <PricingSection />
+      <PricingSection onOpenModal={() => setModalOpen(true)} />
       <CTASection onOpenModal={() => setModalOpen(true)} />
       <Footer />
       <RequestModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />

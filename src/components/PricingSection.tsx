@@ -36,7 +36,11 @@ const tiers: PricingTier[] = [
   },
 ];
 
-const PricingSection = () => {
+interface PricingSectionProps {
+  onOpenModal: () => void;
+}
+
+const PricingSection = ({ onOpenModal }: PricingSectionProps) => {
   return (
     <section id="pricing" className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
@@ -95,6 +99,7 @@ const PricingSection = () => {
               </div>
 
               <button
+                onClick={tier.popular ? onOpenModal : undefined}
                 className={`w-full py-3 rounded-full text-sm font-medium transition-colors mt-8 ${
                   tier.popular
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
