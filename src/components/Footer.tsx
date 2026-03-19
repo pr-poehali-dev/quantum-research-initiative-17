@@ -25,7 +25,7 @@ const Footer = () => {
           <div>
             <h4 className="text-xs font-mono text-muted-foreground mb-4">НАВИГАЦИЯ</h4>
             <ul className="space-y-2">
-              {["Инструменты", "Тарифы", "Отзывы"].map((link) => (
+              {["Инструменты", "Тарифы"].map((link) => (
                 <li key={link}>
                   <a href="#" className="text-sm hover:text-primary transition-colors">
                     {link}

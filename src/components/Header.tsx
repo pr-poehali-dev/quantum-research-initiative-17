@@ -22,9 +22,7 @@ const Header = ({ onOpenModal }: HeaderProps) => {
           <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             Тарифы
           </a>
-          <a href="#testimonials" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Отзывы
-          </a>
+
         </nav>
 
         <button
