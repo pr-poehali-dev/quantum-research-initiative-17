@@ -1,13 +1,12 @@
 import json
 import os
 import smtplib
-import urllib.request
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
 def handler(event: dict, context) -> dict:
-    """Принимает заявку с сайта и отправляет на почту и в Telegram."""
+    """Принимает заявку с сайта и отправляет на почту."""
 
     cors_headers = {
         "Access-Control-Allow-Origin": "*",
@@ -34,7 +33,6 @@ def handler(event: dict, context) -> dict:
     text = f"Новая заявка с сайта CoiledTubing.pro\n\nИмя: {name}\nТелефон: {phone}\nEmail: {email or '—'}\nСообщение: {message or '—'}"
 
     send_email(text, name)
-    send_telegram(text)
 
     return {
         "statusCode": 200,
@@ -48,29 +46,14 @@ def send_email(text: str, name: str):
     smtp_port = int(os.environ.get("SMTP_PORT", "587"))
     smtp_user = os.environ["SMTP_USER"]
     smtp_pass = os.environ["SMTP_PASS"]
-    to_email = os.environ["TO_EMAIL"]
 
     msg = MIMEMultipart()
     msg["From"] = smtp_user
-    msg["To"] = to_email
+    msg["To"] = "Gfobus@gmail.com"
     msg["Subject"] = f"Заявка от {name} — CoiledTubing.pro"
     msg.attach(MIMEText(text, "plain", "utf-8"))
 
     with smtplib.SMTP(smtp_host, smtp_port) as server:
         server.starttls()
         server.login(smtp_user, smtp_pass)
-        server.sendmail(smtp_user, to_email, msg.as_string())
-
-
-def send_telegram(text: str):
-    bot_token = os.environ["TELEGRAM_BOT_TOKEN"]
-    chat_id = os.environ["TELEGRAM_CHAT_ID"]
-
-    data = json.dumps({"chat_id": chat_id, "text": text}).encode("utf-8")
-    req = urllib.request.Request(
-        f"https://api.telegram.org/bot{bot_token}/sendMessage",
-        data=data,
-        headers={"Content-Type": "application/json"},
-        method="POST",
-    )
-    urllib.request.urlopen(req)
+        server.sendmail(smtp_user, "Gfobus@gmail.com", msg.as_string())
