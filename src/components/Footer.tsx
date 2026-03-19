@@ -1,4 +1,38 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+const COUNTER_URL = "https://functions.poehali.dev/4f71118b-b26d-4093-9846-20baf521183f";
+
+const VisitCounter = () => {
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    const visited = sessionStorage.getItem("visited");
+    if (!visited) {
+      sessionStorage.setItem("visited", "1");
+      fetch(COUNTER_URL, { method: "POST" })
+        .then((r) => r.json())
+        .then((d) => setCount(d.count))
+        .catch(() => {});
+    } else {
+      fetch(COUNTER_URL)
+        .then((r) => r.json())
+        .then((d) => setCount(d.count))
+        .catch(() => {});
+    }
+  }, []);
+
+  if (count === null) return null;
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
+      <span className="text-xs font-mono text-muted-foreground">
+        ПОСЕЩЕНИЙ: {count.toLocaleString("ru-RU")}
+      </span>
+    </div>
+  );
+};
 
 const Footer = () => {
   return (
@@ -82,8 +116,9 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between mt-12 pt-8 border-t border-border">
+        <div className="flex flex-col md:flex-row items-center justify-between mt-12 pt-8 border-t border-border gap-3">
           <p className="text-xs text-muted-foreground">2026 COILEDTUBING.PRO</p>
+          <VisitCounter />
           <p className="text-xs text-muted-foreground">ПРОФЕССИОНАЛЬНЫЕ ИНСТРУМЕНТЫ ДЛЯ НЕФТЕСЕРВИСА.</p>
         </div>
       </div>

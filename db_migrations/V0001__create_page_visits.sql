@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS page_visits (
+  id SERIAL PRIMARY KEY,
+  count BIGINT NOT NULL DEFAULT 0,
+  updated_at TIMESTAMP DEFAULT NOW()
+);
+
+INSERT INTO page_visits (count) VALUES (0);
