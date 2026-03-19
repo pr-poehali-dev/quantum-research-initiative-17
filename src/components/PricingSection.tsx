@@ -3,48 +3,43 @@ import { Check } from "lucide-react";
 interface PricingTier {
   name: string;
   price: string;
+  priceNote?: string;
   description: string;
   features: string[];
+  cta: string;
   popular?: boolean;
 }
 
 const tiers: PricingTier[] = [
   {
-    name: "БАЗОВЫЙ",
+    name: "КАЛЬКУЛЯТОРЫ",
     price: "Бесплатно",
-    description: "Для первичного знакомства с инструментами.",
+    description: "Онлайн-инструменты для оперативных расчётов прямо в браузере.",
     features: [
-      "Базовый расчёт допуска ГНКТ",
-      "До 10 расчётов в месяц",
-      "Стандартные типоразмеры труб",
-      "Экспорт результатов в PDF",
-      "Техподдержка по email",
+      "Расчёт нагрузки на ГНКТ",
+      "Оценка давления на устье",
+      "Расчёт скорости промывки",
+      "Гидравлические расчёты",
+      "Расчёт объёма закачки",
+      "Без ограничений по количеству",
     ],
+    cta: "ОТКРЫТЬ КАЛЬКУЛЯТОРЫ",
   },
   {
-    name: "ПРОФИ",
-    price: "Договорная",
-    description: "Для инженеров и сервисных компаний.",
+    name: "ДОПУСК В СКВАЖИНУ",
+    price: "По заявке",
+    priceNote: "индивидуально",
+    description: "Углублённый инженерный анализ допуска ГНКТ для вашей скважины.",
     features: [
-      "Безлимитные расчёты",
-      "Полный анализ графиков работы",
-      "Расчёт усталостного ресурса",
-      "Нестандартные типоразмеры",
-      "Приоритетная поддержка",
-    ],
-    popular: true,
-  },
-  {
-    name: "ЭКСПЕРТИЗА",
-    price: "По запросу",
-    description: "Углублённый анализ от специалистов.",
-    features: [
-      "Всё из тарифа Профи",
-      "Персональный инженер-эксперт",
-      "Детальный отчёт с рекомендациями",
+      "Полный расчёт допуска ГНКТ",
+      "Анализ усталостного ресурса трубы",
+      "Оценка рисков по типу операции",
       "Анализ истории эксплуатации",
-      "Консультация онлайн / выезд",
+      "Письменное заключение с рекомендациями",
+      "Консультация инженера-эксперта",
     ],
+    cta: "ОСТАВИТЬ ЗАЯВКУ",
+    popular: true,
   },
 ];
 
@@ -55,39 +50,42 @@ const PricingSection = () => {
         <div className="text-center mb-16">
           <span className="text-xs font-mono text-muted-foreground tracking-wider">ТАРИФЫ</span>
           <h2 className="font-serif text-4xl md:text-5xl mt-4 mb-4">
-            Рассчитывайте точно,
+            Считайте бесплатно,
             <br />
-            действуйте уверенно
+            получайте экспертизу
           </h2>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[-2deg] border border-amber-100">
-              <span className="text-xs font-mono">БЕСПЛАТНЫЙ_СТАРТ</span>
+              <span className="text-xs font-mono">КАЛЬКУЛЯТОРЫ_БЕСПЛАТНО</span>
             </div>
-            <p className="text-muted-foreground text-sm">Без скрытых платежей. Базовые расчёты бесплатно.</p>
+            <p className="text-muted-foreground text-sm">Расчёты доступны всем. Экспертиза допуска — по заявке.</p>
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[2deg] border border-amber-100">
               <span className="text-xs font-mono">НАДЁЖНО</span>
             </div>
           </div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
           {tiers.map((tier) => (
             <div
               key={tier.name}
-              className={`bg-card border rounded-2xl p-6 relative flex flex-col ${
+              className={`bg-card border rounded-2xl p-8 relative flex flex-col ${
                 tier.popular ? "border-primary shadow-lg" : "border-border"
               }`}
             >
               {tier.popular && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-mono px-3 py-1 rounded-full">
-                  ПОПУЛЯРНЫЙ
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground text-xs font-mono px-3 py-1 rounded-full whitespace-nowrap">
+                  ПЛАТНАЯ УСЛУГА
                 </div>
               )}
 
               <div className="mb-6">
                 <span className="text-xs font-mono text-muted-foreground">{tier.name}</span>
-                <div className="flex items-baseline gap-1 mt-2">
+                <div className="flex items-baseline gap-2 mt-2">
                   <span className="text-3xl font-serif">{tier.price}</span>
+                  {tier.priceNote && (
+                    <span className="text-muted-foreground text-sm">/ {tier.priceNote}</span>
+                  )}
                 </div>
                 <p className="text-sm text-muted-foreground mt-2">{tier.description}</p>
               </div>
@@ -104,13 +102,13 @@ const PricingSection = () => {
               </div>
 
               <button
-                className={`w-full py-3 rounded-full text-sm font-medium transition-colors mt-6 ${
+                className={`w-full py-3 rounded-full text-sm font-medium transition-colors mt-8 ${
                   tier.popular
                     ? "bg-primary text-primary-foreground hover:bg-primary/90"
                     : "border border-border hover:bg-secondary"
                 }`}
               >
-                {tier.name === "ЭКСПЕРТИЗА" ? "ОСТАВИТЬ ЗАЯВКУ" : "НАЧАТЬ"}
+                {tier.cta}
               </button>
             </div>
           ))}
