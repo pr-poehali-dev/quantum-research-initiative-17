@@ -39,7 +39,7 @@ const HeroSection = () => {
               {/* Sticky note */}
               <div className="absolute -left-4 top-20 bg-[#fffef0] p-3 rounded shadow-sm rotate-[-3deg] border border-amber-100 w-40">
                 <p className="text-xs font-mono text-foreground/80">ПАРАМЕТРЫ</p>
-                <p className="text-sm font-serif italic mt-1">«OD: 2⅞", класс B»</p>
+                <p className="text-sm font-serif italic mt-1">«OD: 2⅞", Грейд TS-90»</p>
               </div>
 
               {/* Calculator mockup */}
