@@ -80,7 +80,7 @@ const HeroSection = () => {
                   <div className="flex items-center gap-2 mb-2">
                     <div className="w-6 h-6 bg-secondary rounded-full" />
                     <span className="text-xs font-medium">Инженер</span>
-                    <span className="text-[10px] text-muted-foreground">КИП</span>
+                    <span className="text-[10px] text-muted-foreground">CT</span>
                   </div>
                   <p className="text-xs text-muted-foreground">Расчёт готов,</p>
                 </div>
