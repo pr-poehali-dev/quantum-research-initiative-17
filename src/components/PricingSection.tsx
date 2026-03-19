@@ -58,7 +58,7 @@ const PricingSection = () => {
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[-2deg] border border-amber-100">
               <span className="text-xs font-mono">КАЛЬКУЛЯТОРЫ_БЕСПЛАТНО</span>
             </div>
-            <p className="text-muted-foreground text-sm">Расчёты доступны всем. Экспертиза допуска — по заявке.</p>
+            <p className="text-muted-foreground text-sm">Калькуляторы доступны всем. Экспертиза графиков работ и расчёт допуска — по заявке.</p>
             <div className="bg-[#fffef0] px-3 py-1 rounded shadow-sm rotate-[2deg] border border-amber-100">
               <span className="text-xs font-mono">НАДЁЖНО</span>
             </div>
