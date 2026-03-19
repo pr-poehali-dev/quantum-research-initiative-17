@@ -49,13 +49,16 @@ const Footer = () => {
                   Условия использования
                 </Link>
               </li>
-              {["Методология расчётов", "Контакты"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-sm hover:text-primary transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <a href="#" className="text-sm hover:text-primary transition-colors">
+                  Методология расчётов
+                </a>
+              </li>
+              <li>
+                <Link to="/contacts" className="text-sm hover:text-primary transition-colors">
+                  Контакты
+                </Link>
+              </li>
             </ul>
           </div>
 
