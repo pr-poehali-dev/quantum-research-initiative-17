@@ -58,7 +58,7 @@ const WorkflowSection = () => {
                     <div className="bg-[#fffef0] p-4 rounded shadow-sm rotate-[-2deg] border border-amber-100 w-4/5">
                       <p className="text-xs font-mono text-muted-foreground">ПАРАМЕТРЫ</p>
                       <p className="text-xs font-mono mt-2 text-foreground/70">OD: 2⅞"</p>
-                      <p className="text-xs font-mono text-foreground/70">Класс: B</p>
+                      <p className="text-xs font-mono text-foreground/70">TS-90</p>
                       <p className="text-xs font-mono text-foreground/70">P: 15 МПа</p>
                     </div>
                   )}
