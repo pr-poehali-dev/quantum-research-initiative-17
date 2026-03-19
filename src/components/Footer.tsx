@@ -44,7 +44,12 @@ const Footer = () => {
                   Политика конфиденциальности
                 </Link>
               </li>
-              {["Условия использования", "Методология расчётов", "Контакты"].map((link) => (
+              <li>
+                <Link to="/terms" className="text-sm hover:text-primary transition-colors">
+                  Условия использования
+                </Link>
+              </li>
+              {["Методология расчётов", "Контакты"].map((link) => (
                 <li key={link}>
                   <a href="#" className="text-sm hover:text-primary transition-colors">
                     {link}
