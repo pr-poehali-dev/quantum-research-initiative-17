@@ -28,7 +28,7 @@ const VisitCounter = () => {
     <div className="flex items-center gap-2">
       <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
       <span className="text-xs font-mono text-muted-foreground">
-        ПОСЕЩЕНИЙ: {count.toLocaleString("ru-RU")}
+        ПОСЕЩЕНИЙ: {Number(count).toLocaleString("ru-RU")}
       </span>
     </div>
   );
