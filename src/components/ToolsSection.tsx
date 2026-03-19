@@ -25,6 +25,14 @@ const tools = [
     description: "Расчёт внутренней вместимости и массы ГНКТ в системе единиц СИ.",
     url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-volume-si-v1.html",
   },
+  {
+    id: "ВЕС_ГНКТ_V1",
+    name: "Калькулятор веса ГНКТ в вертикальном стволе",
+    version: "V.1",
+    icon: "ArrowDownToLine",
+    description: "Расчёт веса колонны ГНКТ с учётом выталкивающей силы, давления, флюидов и КНК.",
+    url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-weight-vertical-v1.html",
+  },
 ];
 
 const ToolsSection = () => {
