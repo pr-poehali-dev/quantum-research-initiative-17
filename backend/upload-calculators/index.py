@@ -25,7 +25,7 @@ CALCULATORS = [
     },
     {
         "id": "gnkt-gpp",
-        "drive_id": "1GTNBWeBPiwTriwKXjN-aIB9GkbtbLKaG",
+        "drive_id": "1cdmvSgFP-OgOIooukgpz2XUHRHAIgRGr",
         "filename": "gnkt-gpp-v1.html",
     },
 ]

@@ -1,0 +1,12 @@
+{
+  "tests": [
+    {
+      "name": "Upload chemistry reference",
+      "method": "GET",
+      "path": "/",
+      "expectedStatus": 200,
+      "expectedBody": {"status": "uploaded"},
+      "bodyMatcher": "partial"
+    }
+  ]
+}

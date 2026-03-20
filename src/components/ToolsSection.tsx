@@ -41,6 +41,14 @@ const tools = [
     description: "Расчёт проппанта и геля по станциям, шага перфорации, объёма ГТ с выгрузкой PDF-отчёта.",
     url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-gpp-v1.html",
   },
+  {
+    id: "ХИМИЯ_V1",
+    name: "Химия · справочные таблицы",
+    version: "V.1",
+    icon: "FlaskConical",
+    description: "Таблица Менделеева, плотность газов, химия ГНКТ, кислоты, растворимость, солевые растворы.",
+    url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/chemistry-ref-v1.html",
+  },
 ];
 
 const ToolsSection = () => {
