@@ -23,6 +23,11 @@ CALCULATORS = [
         "drive_id": "1m3lmxgXybkHfVzzZ3dX6Mq9PVrgoRMFS",
         "filename": "gnkt-volume-si-v1.html",
     },
+    {
+        "id": "gnkt-gpp",
+        "drive_id": "1GTNBWeBPiwTriwKXjN-aIB9GkbtbLKaG",
+        "filename": "gnkt-gpp-v1.html",
+    },
 ]
 
 

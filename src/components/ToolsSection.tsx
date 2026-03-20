@@ -33,6 +33,14 @@ const tools = [
     description: "Расчёт веса колонны ГНКТ с учётом выталкивающей силы, давления, флюидов и КНК.",
     url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-weight-vertical-v1.html",
   },
+  {
+    id: "ГПП_V1",
+    name: "Гидропескоструйная перфорация на ГНКТ",
+    version: "V.1",
+    icon: "Zap",
+    description: "Расчёт проппанта и геля по станциям, шага перфорации, объёма ГТ с выгрузкой PDF-отчёта.",
+    url: "https://cdn.poehali.dev/projects/71bcf9c1-98c4-4154-aa8d-eaa13d80a086/bucket/calculators/gnkt-gpp-v1.html",
+  },
 ];
 
 const ToolsSection = () => {
