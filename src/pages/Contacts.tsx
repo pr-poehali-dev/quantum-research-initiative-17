@@ -1,28 +1,7 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
 
 const Contacts = () => {
-  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("loading");
-    try {
-      const res = await fetch("https://functions.poehali.dev/59868fe4-42bb-4f45-b384-cf520c3a2692", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-      if (!res.ok) throw new Error();
-      setStatus("success");
-      setForm({ name: "", phone: "", email: "", message: "" });
-    } catch {
-      setStatus("error");
-    }
-  };
-
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border py-4">
@@ -38,28 +17,38 @@ const Contacts = () => {
 
       <main className="max-w-4xl mx-auto px-6 py-16">
         <h1 className="font-serif text-4xl mb-2">Контакты</h1>
-        <p className="text-muted-foreground text-sm mb-12">Свяжитесь с нами — ответим в течение 24 часов</p>
+        <p className="text-muted-foreground text-sm mb-12">
+          Пишите напрямую — отвечаем в рабочее время
+        </p>
 
         <div className="grid md:grid-cols-2 gap-16">
-          {/* Контактная информация */}
-          <div className="space-y-8">
+          <div className="space-y-10">
             <div>
-              <h2 className="font-serif text-xl mb-4">Реквизиты</h2>
-              <div className="space-y-4">
+              <h2 className="font-serif text-xl mb-5">Связаться с нами</h2>
+              <div className="space-y-5">
                 <div className="flex items-start gap-3">
                   <Icon name="Mail" size={18} className="text-muted-foreground mt-0.5" />
                   <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Электронная почта</p>
-                    <a href="mailto:info@coiledtubing.pro" className="text-sm hover:text-primary transition-colors">
+                    <p className="text-xs text-muted-foreground mb-1">Электронная почта</p>
+                    <a
+                      href="mailto:info@coiledtubing.pro"
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                    >
                       info@coiledtubing.pro
                     </a>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      Технические вопросы, предложения по сотрудничеству, обратная связь по проекту
+                    </p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Icon name="Globe" size={18} className="text-muted-foreground mt-0.5" />
                   <div>
-                    <p className="text-xs text-muted-foreground mb-0.5">Сайт</p>
-                    <a href="https://coiledtubing.pro" className="text-sm hover:text-primary transition-colors">
+                    <p className="text-xs text-muted-foreground mb-1">Сайт</p>
+                    <a
+                      href="https://coiledtubing.pro"
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                    >
                       coiledtubing.pro
                     </a>
                   </div>
@@ -68,16 +57,16 @@ const Contacts = () => {
             </div>
 
             <div>
-              <h2 className="font-serif text-xl mb-4">Специализация</h2>
-              <ul className="space-y-2">
+              <h2 className="font-serif text-xl mb-4">По каким вопросам писать</h2>
+              <ul className="space-y-3">
                 {[
-                  "Расчёт допуска ГНКТ в скважину",
-                  "Углублённый инженерный анализ",
-                  "Симуляция траектории скважины",
-                  "Экспертные заключения",
+                  "Технические замечания и ошибки в материалах",
+                  "Предложения по новым темам и калькуляторам",
+                  "Сотрудничество и экспертные комментарии",
+                  "Вопросы по использованию инструментов",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-2 text-sm text-muted-foreground">
-                    <div className="w-1 h-1 rounded-full bg-primary" />
+                  <li key={item} className="flex items-start gap-2 text-sm text-muted-foreground">
+                    <div className="w-1 h-1 rounded-full bg-primary mt-2 shrink-0" />
                     {item}
                   </li>
                 ))}
@@ -85,82 +74,33 @@ const Contacts = () => {
             </div>
           </div>
 
-          {/* Форма */}
-          <div>
-            <h2 className="font-serif text-xl mb-6">Написать нам</h2>
-
-            {status === "success" ? (
-              <div className="text-center py-12">
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <Icon name="Check" size={24} className="text-primary" />
-                </div>
-                <p className="font-medium text-lg mb-1">Сообщение отправлено!</p>
-                <p className="text-muted-foreground text-sm">Мы свяжемся с вами в ближайшее время.</p>
-                <button
-                  onClick={() => setStatus("idle")}
-                  className="mt-6 bg-primary text-primary-foreground px-6 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
-                >
-                  Отправить ещё
-                </button>
+          <div className="space-y-6">
+            <div className="bg-secondary/40 border border-border rounded-2xl p-6">
+              <div className="w-10 h-10 border border-border rounded-lg flex items-center justify-center mb-4">
+                <Icon name="Clock" size={18} className="text-muted-foreground" />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Имя *</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="Иван Петров"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Телефон *</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="+7 900 000 00 00"
-                    value={form.phone}
-                    onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                    className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Email</label>
-                  <input
-                    type="email"
-                    placeholder="ivan@company.ru"
-                    value={form.email}
-                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary/30"
-                  />
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-1 block">Сообщение</label>
-                  <textarea
-                    placeholder="Опишите вашу задачу..."
-                    rows={4}
-                    value={form.message}
-                    onChange={(e) => setForm({ ...form, message: e.target.value })}
-                    className="w-full border border-border rounded-lg px-3 py-2 text-sm bg-background focus:outline-none focus:ring-2 focus:ring-primary/30 resize-none"
-                  />
-                </div>
+              <h3 className="font-medium mb-2">Время ответа</h3>
+              <p className="text-sm text-muted-foreground">
+                Стараемся отвечать в течение 1–2 рабочих дней. Если вопрос срочный — укажите это в теме письма.
+              </p>
+            </div>
 
-                {status === "error" && (
-                  <p className="text-red-500 text-sm">Ошибка отправки. Попробуйте ещё раз.</p>
-                )}
-
-                <button
-                  type="submit"
-                  disabled={status === "loading"}
-                  className="w-full bg-primary text-primary-foreground py-2.5 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors disabled:opacity-60"
-                >
-                  {status === "loading" ? "Отправляем..." : "Отправить сообщение"}
-                </button>
-              </form>
-            )}
+            <div className="bg-secondary/40 border border-border rounded-2xl p-6">
+              <div className="w-10 h-10 border border-border rounded-lg flex items-center justify-center mb-4">
+                <Icon name="Heart" size={18} className="text-muted-foreground" />
+              </div>
+              <h3 className="font-medium mb-2">Поддержать проект</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Хотите помочь развитию независимого технического ресурса для отрасли?
+              </p>
+              <Link
+                to="/support"
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                Узнать как поддержать
+                <Icon name="ArrowRight" size={14} />
+              </Link>
+            </div>
           </div>
         </div>
       </main>

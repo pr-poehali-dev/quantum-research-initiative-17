@@ -1,4 +1,5 @@
 import { Check } from "lucide-react";
+import { Link } from "react-router-dom";
 
 interface PricingTier {
   name: string;
@@ -31,16 +32,12 @@ const tiers: PricingTier[] = [
       "Письменное заключение с рекомендациями",
       "Консультация инженера-эксперта",
     ],
-    cta: "ОСТАВИТЬ ЗАЯВКУ",
+    cta: "НАПИСАТЬ НА ПОЧТУ",
     popular: true,
   },
 ];
 
-interface PricingSectionProps {
-  onOpenModal: () => void;
-}
-
-const PricingSection = ({ onOpenModal }: PricingSectionProps) => {
+const PricingSection = () => {
   return (
     <section id="pricing" className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
@@ -98,16 +95,20 @@ const PricingSection = ({ onOpenModal }: PricingSectionProps) => {
                 ))}
               </div>
 
-              <button
-                onClick={tier.popular ? onOpenModal : undefined}
-                className={`w-full py-3 rounded-full text-sm font-medium transition-colors mt-8 ${
-                  tier.popular
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "border border-border hover:bg-secondary"
-                }`}
-              >
-                {tier.cta}
-              </button>
+              {tier.popular ? (
+                <Link
+                  to="/contacts"
+                  className="w-full py-3 rounded-full text-sm font-medium transition-colors mt-8 text-center bg-primary text-primary-foreground hover:bg-primary/90"
+                >
+                  {tier.cta}
+                </Link>
+              ) : (
+                <button
+                  className="w-full py-3 rounded-full text-sm font-medium transition-colors mt-8 border border-border hover:bg-secondary"
+                >
+                  {tier.cta}
+                </button>
+              )}
             </div>
           ))}
         </div>
