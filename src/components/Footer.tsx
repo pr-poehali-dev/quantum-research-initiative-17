@@ -98,6 +98,11 @@ const Footer = () => {
                   Контакты
                 </Link>
               </li>
+              <li>
+                <Link to="/support" className="text-sm hover:text-primary transition-colors">
+                  Поддержать проект
+                </Link>
+              </li>
             </ul>
           </div>
 

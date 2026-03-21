@@ -1,5 +1,31 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+
+const CARD = "4274 3200 4147 9885";
+
+const CardNumber = () => {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(CARD.replace(/\s/g, ""));
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="flex items-center gap-3">
+      <span className="font-mono text-xl md:text-2xl tracking-widest select-all">{CARD}</span>
+      <button
+        onClick={handleCopy}
+        className="ml-auto shrink-0 flex items-center gap-1.5 text-xs text-muted-foreground border border-border rounded-lg px-3 py-1.5 hover:bg-secondary transition-colors"
+      >
+        <Icon name={copied ? "Check" : "Copy"} size={13} />
+        {copied ? "Скопировано" : "Копировать"}
+      </button>
+    </div>
+  );
+};
 
 const directions = [
   {
@@ -89,12 +115,31 @@ const Support = () => {
           </div>
         </div>
 
+        {/* Card donation */}
+        <div className="mb-6">
+          <h2 className="font-serif text-2xl mb-6">Перевод на карту</h2>
+          <div className="border border-border rounded-2xl p-6 md:p-8 bg-card">
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 border border-border rounded-lg flex items-center justify-center shrink-0">
+                <Icon name="CreditCard" size={18} className="text-muted-foreground" />
+              </div>
+              <div>
+                <p className="text-xs text-muted-foreground">Сбербанк</p>
+                <p className="font-medium text-sm">Банковская карта</p>
+              </div>
+            </div>
+            <CardNumber />
+            <p className="text-xs text-muted-foreground mt-4">
+              В комментарии к переводу можно указать «Поддержка coiledtubing.pro» — это поможет нам отслеживать поступления.
+            </p>
+          </div>
+        </div>
+
         {/* CTA */}
         <div className="bg-card border border-border rounded-3xl p-8 md:p-12 text-center">
-          <h2 className="font-serif text-2xl md:text-3xl mb-3">Хотите поддержать проект?</h2>
+          <h2 className="font-serif text-2xl md:text-3xl mb-3">Другие форматы участия</h2>
           <p className="text-muted-foreground text-sm mb-8 max-w-lg mx-auto">
-            Напишите нам — обсудим форматы участия: финансовая поддержка, экспертное сотрудничество
-            или партнёрство.
+            Экспертное сотрудничество, партнёрство или другие форматы — напишите нам.
           </p>
           <a
             href="mailto:info@coiledtubing.pro?subject=Поддержка проекта coiledtubing.pro"
