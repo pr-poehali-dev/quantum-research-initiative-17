@@ -20,9 +20,9 @@ const Header = () => {
           <Link to="/tools" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {t("Инструменты", "Tools")}
           </Link>
-          <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+          <Link to="/#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
             {t("Тарифы", "Pricing")}
-          </a>
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">

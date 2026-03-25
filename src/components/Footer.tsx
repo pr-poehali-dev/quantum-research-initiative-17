@@ -71,9 +71,9 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <a href="#pricing" className="text-sm hover:text-primary transition-colors">
+                <Link to="/#pricing" className="text-sm hover:text-primary transition-colors">
                   {t("Тарифы", "Pricing")}
-                </a>
+                </Link>
               </li>
               <li>
                 <Link to="/about" className="text-sm hover:text-primary transition-colors">
