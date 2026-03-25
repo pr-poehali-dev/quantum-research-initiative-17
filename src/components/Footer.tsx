@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useLang } from "@/context/LanguageContext";
 
 const COUNTER_URL = "https://functions.poehali.dev/4f71118b-b26d-4093-9846-20baf521183f";
 
 const VisitCounter = () => {
   const [count, setCount] = useState<number | null>(null);
+  const { t } = useLang();
 
   useEffect(() => {
     const visited = sessionStorage.getItem("visited");
@@ -28,13 +30,15 @@ const VisitCounter = () => {
     <div className="flex items-center gap-2">
       <div className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
       <span className="text-xs font-mono text-muted-foreground">
-        ПОСЕЩЕНИЙ: {Number(count).toLocaleString("ru-RU")}
+        {t("ПОСЕЩЕНИЙ", "VISITS")}: {Number(count).toLocaleString("ru-RU")}
       </span>
     </div>
   );
 };
 
 const Footer = () => {
+  const { t } = useLang();
+
   return (
     <footer className="py-12 border-t border-border">
       <div className="max-w-7xl mx-auto px-6">
@@ -48,27 +52,32 @@ const Footer = () => {
               <span className="font-serif">CoiledTubing.pro</span>
             </Link>
             <p className="text-xs font-mono text-muted-foreground">
-              РАСЧЁТЫ ГНКТ
+              {t("РАСЧЁТЫ ГНКТ", "CT CALCULATIONS")}
               <br />
-              ПЛАТФОРМА V1.0
+              {t("ПЛАТФОРМА V1.0", "PLATFORM V1.0")}
             </p>
-            <p className="text-xs font-mono text-muted-foreground mt-4">ВСЕ СИСТЕМЫ РАБОТАЮТ</p>
+            <p className="text-xs font-mono text-muted-foreground mt-4">
+              {t("ВСЕ СИСТЕМЫ РАБОТАЮТ", "ALL SYSTEMS OPERATIONAL")}
+            </p>
           </div>
 
           {/* Directory */}
           <div>
-            <h4 className="text-xs font-mono text-muted-foreground mb-4">НАВИГАЦИЯ</h4>
+            <h4 className="text-xs font-mono text-muted-foreground mb-4">{t("НАВИГАЦИЯ", "NAVIGATION")}</h4>
             <ul className="space-y-2">
-              {["Инструменты", "Тарифы"].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-sm hover:text-primary transition-colors">
-                    {link}
-                  </a>
-                </li>
-              ))}
+              <li>
+                <Link to="/tools" className="text-sm hover:text-primary transition-colors">
+                  {t("Инструменты", "Tools")}
+                </Link>
+              </li>
+              <li>
+                <a href="#pricing" className="text-sm hover:text-primary transition-colors">
+                  {t("Тарифы", "Pricing")}
+                </a>
+              </li>
               <li>
                 <Link to="/about" className="text-sm hover:text-primary transition-colors">
-                  О платформе
+                  {t("О платформе", "About")}
                 </Link>
               </li>
             </ul>
@@ -76,31 +85,31 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h4 className="text-xs font-mono text-muted-foreground mb-4">ДОКУМЕНТЫ</h4>
+            <h4 className="text-xs font-mono text-muted-foreground mb-4">{t("ДОКУМЕНТЫ", "DOCUMENTS")}</h4>
             <ul className="space-y-2">
               <li>
                 <Link to="/privacy" className="text-sm hover:text-primary transition-colors">
-                  Политика конфиденциальности
+                  {t("Политика конфиденциальности", "Privacy Policy")}
                 </Link>
               </li>
               <li>
                 <Link to="/terms" className="text-sm hover:text-primary transition-colors">
-                  Условия использования
+                  {t("Условия использования", "Terms of Use")}
                 </Link>
               </li>
               <li>
                 <Link to="/methodology" className="text-sm hover:text-primary transition-colors">
-                  Методология расчётов
+                  {t("Методология расчётов", "Calculation Methodology")}
                 </Link>
               </li>
               <li>
                 <Link to="/contacts" className="text-sm hover:text-primary transition-colors">
-                  Контакты
+                  {t("Контакты", "Contacts")}
                 </Link>
               </li>
               <li>
                 <Link to="/support" className="text-sm hover:text-primary transition-colors">
-                  Поддержать проект
+                  {t("Поддержать проект", "Support the project")}
                 </Link>
               </li>
             </ul>
@@ -108,14 +117,14 @@ const Footer = () => {
 
           {/* Status */}
           <div className="md:col-span-2">
-            <h4 className="text-xs font-mono text-muted-foreground mb-4">СТАТУС</h4>
+            <h4 className="text-xs font-mono text-muted-foreground mb-4">{t("СТАТУС", "STATUS")}</h4>
             <div className="bg-secondary/50 rounded-xl p-4 font-mono text-xs">
               <div className="flex items-center justify-between mb-2">
                 <span className="text-muted-foreground">coiledtubing.pro</span>
               </div>
               <div className="space-y-1">
-                <p className="text-primary">РАСЧЁТНЫЙ МОДУЛЬ [АКТИВЕН]</p>
-                <p className="text-muted-foreground">Все системы работают штатно</p>
+                <p className="text-primary">{t("РАСЧЁТНЫЙ МОДУЛЬ [АКТИВЕН]", "CALCULATION MODULE [ACTIVE]")}</p>
+                <p className="text-muted-foreground">{t("Все системы работают штатно", "All systems operational")}</p>
               </div>
             </div>
           </div>
@@ -124,7 +133,9 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-center justify-between mt-12 pt-8 border-t border-border gap-3">
           <p className="text-xs text-muted-foreground">2026 COILEDTUBING.PRO</p>
           <VisitCounter />
-          <p className="text-xs text-muted-foreground">ПРОФЕССИОНАЛЬНЫЕ ИНСТРУМЕНТЫ ДЛЯ НЕФТЕСЕРВИСА.</p>
+          <p className="text-xs text-muted-foreground">
+            {t("ПРОФЕССИОНАЛЬНЫЕ ИНСТРУМЕНТЫ ДЛЯ НЕФТЕСЕРВИСА.", "PROFESSIONAL TOOLS FOR OIL SERVICES.")}
+          </p>
         </div>
       </div>
     </footer>

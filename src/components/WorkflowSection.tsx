@@ -1,50 +1,64 @@
-interface WorkflowStep {
-  number: string;
-  title: string;
-  description: string;
-  visual: "params" | "calc" | "report" | "request";
-}
-
-const steps: WorkflowStep[] = [
-  {
-    number: "01",
-    title: "Введите параметры",
-    description: "Укажите размер трубы, тип операции, давление и глубину скважины.",
-    visual: "params",
-  },
-  {
-    number: "02",
-    title: "Автоматический расчёт",
-    description: "Система рассчитывает допуск и коэффициенты запаса прочности.",
-    visual: "calc",
-  },
-  {
-    number: "03",
-    title: "Результат и рекомендации",
-    description: "Получите готовый отчёт с визуализацией и выводами по безопасности.",
-    visual: "report",
-  },
-  {
-    number: "04",
-    title: "Заявка на экспертизу",
-    description: "Нужен углублённый анализ? Оставьте заявку — специалист свяжется с вами.",
-    visual: "request",
-  },
-];
+import { useLang } from "@/context/LanguageContext";
 
 const WorkflowSection = () => {
+  const { t } = useLang();
+
+  const steps = [
+    {
+      number: "01",
+      title: t("Введите параметры", "Enter Parameters"),
+      description: t(
+        "Укажите размер трубы, тип операции, давление и глубину скважины.",
+        "Enter pipe size, operation type, pressure and well depth."
+      ),
+      visual: "params" as const,
+    },
+    {
+      number: "02",
+      title: t("Автоматический расчёт", "Automatic Calculation"),
+      description: t(
+        "Система рассчитывает допуск и коэффициенты запаса прочности.",
+        "The system calculates run permit and safety factors."
+      ),
+      visual: "calc" as const,
+    },
+    {
+      number: "03",
+      title: t("Результат и рекомендации", "Results & Recommendations"),
+      description: t(
+        "Получите готовый отчёт с визуализацией и выводами по безопасности.",
+        "Get a ready report with visualization and safety conclusions."
+      ),
+      visual: "report" as const,
+    },
+    {
+      number: "04",
+      title: t("Заявка на экспертизу", "Request Expert Review"),
+      description: t(
+        "Нужен углублённый анализ? Оставьте заявку — специалист свяжется с вами.",
+        "Need an in-depth analysis? Submit a request — a specialist will contact you."
+      ),
+      visual: "request" as const,
+    },
+  ];
+
   return (
     <section className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row items-start justify-between mb-16">
           <div>
-            <span className="text-xs font-mono text-muted-foreground tracking-wider">КАК ЭТО РАБОТАЕТ</span>
+            <span className="text-xs font-mono text-muted-foreground tracking-wider">
+              {t("КАК ЭТО РАБОТАЕТ", "HOW IT WORKS")}
+            </span>
             <h2 className="font-serif text-4xl md:text-5xl mt-4 max-w-md leading-tight">
-              От параметров до заключения — за минуты.
+              {t(
+                "От параметров до заключения — за минуты.",
+                "From parameters to conclusion — in minutes."
+              )}
             </h2>
           </div>
           <p className="text-muted-foreground text-sm max-w-xs hidden md:block">
-            Без лишних шагов. Только данные и результат.
+            {t("Без лишних шагов. Только данные и результат.", "No extra steps. Just data and results.")}
           </p>
         </div>
 
@@ -56,10 +70,10 @@ const WorkflowSection = () => {
                 <div className="aspect-square bg-secondary/50 rounded-xl mb-6 flex items-center justify-center relative overflow-hidden">
                   {step.visual === "params" && (
                     <div className="bg-[#fffef0] p-4 rounded shadow-sm rotate-[-2deg] border border-amber-100 w-4/5">
-                      <p className="text-xs font-mono text-muted-foreground">ПАРАМЕТРЫ</p>
+                      <p className="text-xs font-mono text-muted-foreground">{t("ПАРАМЕТРЫ", "PARAMETERS")}</p>
                       <p className="text-xs font-mono mt-2 text-foreground/70">OD: 2⅞"</p>
                       <p className="text-xs font-mono text-foreground/70">TS-90</p>
-                      <p className="text-xs font-mono text-foreground/70">P: 680 МПа</p>
+                      <p className="text-xs font-mono text-foreground/70">P: 680 {t("МПа", "MPa")}</p>
                     </div>
                   )}
                   {step.visual === "calc" && (
@@ -82,8 +96,8 @@ const WorkflowSection = () => {
                   {step.visual === "report" && (
                     <div className="bg-card border border-border rounded-lg p-3 shadow-sm w-4/5">
                       <div className="flex items-center justify-between mb-2">
-                        <span className="text-[10px] font-mono text-muted-foreground">ОТЧЁТ</span>
-                        <span className="text-[10px] font-mono text-green-600">ГОТОВ</span>
+                        <span className="text-[10px] font-mono text-muted-foreground">{t("ОТЧЁТ", "REPORT")}</span>
+                        <span className="text-[10px] font-mono text-green-600">{t("ГОТОВ", "READY")}</span>
                       </div>
                       <div className="space-y-1">
                         <div className="h-1.5 bg-border rounded w-full" />
@@ -95,7 +109,7 @@ const WorkflowSection = () => {
                   {step.visual === "request" && (
                     <div className="text-center">
                       <div className="inline-flex items-center gap-2 bg-accent/50 rounded-full px-4 py-2">
-                        <span className="text-xs font-mono">ОТПРАВИТЬ ЗАЯВКУ</span>
+                        <span className="text-xs font-mono">{t("ОТПРАВИТЬ ЗАЯВКУ", "SUBMIT REQUEST")}</span>
                       </div>
                     </div>
                   )}

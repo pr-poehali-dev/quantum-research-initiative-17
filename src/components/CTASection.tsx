@@ -1,7 +1,10 @@
 import { ArrowRight, BarChart2, Calculator, ClipboardList, Settings, Users } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useLang } from "@/context/LanguageContext";
 
 const CTASection = () => {
+  const { t } = useLang();
+
   return (
     <section className="py-24 bg-secondary/30">
       <div className="max-w-7xl mx-auto px-6">
@@ -29,18 +32,21 @@ const CTASection = () => {
           {/* Main content */}
           <div className="text-center max-w-2xl mx-auto relative z-10">
             <h2 className="font-serif text-4xl md:text-5xl mb-4 leading-tight">
-              Ваши операции,
+              {t("Ваши операции,", "Your operations,")}
               <br />
-              рассчитаны безупречно.
+              {t("рассчитаны безупречно.", "calculated flawlessly.")}
             </h2>
             <p className="text-muted-foreground mb-8">
-              Присоединяйтесь к специалистам, которые уже используют точные расчёты ГНКТ для безопасной и эффективной работы.
+              {t(
+                "Присоединяйтесь к специалистам, которые уже используют точные расчёты ГНКТ для безопасной и эффективной работы.",
+                "Join specialists who already use accurate CT calculations for safe and efficient operations."
+              )}
             </p>
             <Link
               to="/contacts"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
             >
-              Связаться с нами
+              {t("Связаться с нами", "Contact us")}
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
