@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
+import { useLang, Language } from "@/context/LanguageContext";
 
 const Header = () => {
+  const { lang, setLang, t } = useLang();
+
+  const toggleLang = () => setLang(lang === "ru" ? "en" : "ru");
+
   return (
     <header className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border/40">
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -12,20 +17,29 @@ const Header = () => {
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#features" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Инструменты
-          </a>
+          <Link to="/tools" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            {t("Инструменты", "Tools")}
+          </Link>
           <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            Тарифы
+            {t("Тарифы", "Pricing")}
           </a>
         </nav>
 
-        <Link
-          to="/contacts"
-          className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
-        >
-          Связаться
-        </Link>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleLang}
+            className="text-xs font-mono border border-border rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+          >
+            {lang === "ru" ? "EN" : "RU"}
+          </button>
+
+          <Link
+            to="/contacts"
+            className="bg-primary text-primary-foreground px-4 py-2 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            {t("Связаться", "Contact")}
+          </Link>
+        </div>
       </div>
     </header>
   );
