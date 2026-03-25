@@ -15,10 +15,20 @@ const LanguageContext = createContext<LanguageContextType>({
 });
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Language>("ru");
+  const [lang, setLang] = useState<Language>(() => {
+    const saved = localStorage.getItem("lang");
+    return (saved === "en" ? "en" : "ru") as Language;
+  });
+
+  const handleSetLang = (l: Language) => {
+    localStorage.setItem("lang", l);
+    setLang(l);
+  };
+
   const t = (ru: string, en: string) => (lang === "ru" ? ru : en);
+
   return (
-    <LanguageContext.Provider value={{ lang, setLang, t }}>
+    <LanguageContext.Provider value={{ lang, setLang: handleSetLang, t }}>
       {children}
     </LanguageContext.Provider>
   );
