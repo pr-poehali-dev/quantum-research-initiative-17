@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Icon from "@/components/ui/icon";
+import { useLang } from "@/context/LanguageContext";
 
 const CARD = "4274 3200 4147 9885";
 
 const CardNumber = () => {
   const [copied, setCopied] = useState(false);
+  const { t } = useLang();
 
   const handleCopy = () => {
     navigator.clipboard.writeText(CARD.replace(/\s/g, ""));
@@ -21,82 +23,98 @@ const CardNumber = () => {
         className="ml-auto shrink-0 flex items-center gap-1.5 text-xs text-muted-foreground border border-border rounded-lg px-3 py-1.5 hover:bg-secondary transition-colors"
       >
         <Icon name={copied ? "Check" : "Copy"} size={13} />
-        {copied ? "Скопировано" : "Копировать"}
+        {copied ? t("Скопировано", "Copied") : t("Копировать", "Copy")}
       </button>
     </div>
   );
 };
 
-const directions = [
-  {
-    icon: "Users",
-    title: "Работа технических редакторов и экспертов",
-    description:
-      "Привлечение узких специалистов для разбора нестандартных ситуаций и верификации расчётных методик.",
-  },
-  {
-    icon: "Calculator",
-    title: "Интерактивные калькуляторы",
-    description:
-      "Создание инструментов для выбора колонн ГНКТ, расчёта нагрузок и моделирования скважинных операций.",
-  },
-  {
-    icon: "Video",
-    title: "Обучающие видео",
-    description:
-      "Запись материалов с реальными примерами из промысла — от базовых операций до сложных аварийных ситуаций.",
-  },
-  {
-    icon: "Server",
-    title: "Техническая поддержка и хостинг",
-    description:
-      "Обеспечение быстрой и надёжной работы сайта, хранения данных и безотказности инструментов.",
-  },
-  {
-    icon: "MessageSquare",
-    title: "Офлайн-встречи и круглые столы",
-    description:
-      "Организация профильных мероприятий для обмена опытом между специалистами отрасли.",
-  },
-];
-
 const Support = () => {
+  const { lang, setLang, t } = useLang();
+
+  const directions = [
+    {
+      icon: "Users",
+      title: t("Работа технических редакторов и экспертов", "Technical editors and expert work"),
+      description: t(
+        "Привлечение узких специалистов для разбора нестандартных ситуаций и верификации расчётных методик.",
+        "Engaging specialists to analyze non-standard situations and verify calculation methods."
+      ),
+    },
+    {
+      icon: "Calculator",
+      title: t("Интерактивные калькуляторы", "Interactive calculators"),
+      description: t(
+        "Создание инструментов для выбора колонн ГНКТ, расчёта нагрузок и моделирования скважинных операций.",
+        "Building tools for CT string selection, load calculation and wellbore operation simulation."
+      ),
+    },
+    {
+      icon: "Video",
+      title: t("Обучающие видео", "Training videos"),
+      description: t(
+        "Запись материалов с реальными примерами из промысла — от базовых операций до сложных аварийных ситуаций.",
+        "Recording materials with real field examples — from basic operations to complex emergency situations."
+      ),
+    },
+    {
+      icon: "Server",
+      title: t("Техническая поддержка и хостинг", "Technical support and hosting"),
+      description: t(
+        "Обеспечение быстрой и надёжной работы сайта, хранения данных и безотказности инструментов.",
+        "Ensuring fast and reliable website operation, data storage and tool uptime."
+      ),
+    },
+    {
+      icon: "MessageSquare",
+      title: t("Офлайн-встречи и круглые столы", "Offline meetups and roundtables"),
+      description: t(
+        "Организация профильных мероприятий для обмена опытом между специалистами отрасли.",
+        "Organizing industry events for knowledge sharing among specialists."
+      ),
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border py-4">
-        <div className="max-w-4xl mx-auto px-6">
+        <div className="max-w-4xl mx-auto px-6 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2 w-fit">
             <div className="w-5 h-5 border-2 border-foreground rounded-sm flex items-center justify-center">
               <span className="text-[10px] font-mono">CT</span>
             </div>
             <span className="font-serif">CoiledTubing.pro</span>
           </Link>
+          <button
+            onClick={() => setLang(lang === "ru" ? "en" : "ru")}
+            className="text-xs font-mono border border-border rounded-full px-3 py-1.5 text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+          >
+            {lang === "ru" ? "EN" : "RU"}
+          </button>
         </div>
       </header>
 
       <main className="max-w-4xl mx-auto px-6 py-16">
-        {/* Hero */}
         <div className="mb-16">
           <div className="inline-flex items-center gap-2 text-xs text-muted-foreground border border-border rounded-full px-3 py-1 mb-6">
             <Icon name="Heart" size={12} />
-            Поддержка проекта
+            {t("Поддержка проекта", "Support the project")}
           </div>
           <h1 className="font-serif text-4xl md:text-5xl mb-5 leading-tight">
-            Поддержите развитие
+            {t("Поддержите развитие", "Support the development of")}
             <br />
             coiledtubing.pro
           </h1>
           <p className="text-muted-foreground text-base max-w-2xl leading-relaxed">
-            Мы стремимся сохранить доступ к качественной информации для всех — от начинающих
-            операторов до главных инженеров. Без поддержки со стороны аудитории сложно развивать
-            проект в долгосрок, закрывать сложные технические темы и привлекать узких специалистов
-            для разбора нестандартных ситуаций.
+            {t(
+              "Мы стремимся сохранить доступ к качественной информации для всех — от начинающих операторов до главных инженеров. Без поддержки со стороны аудитории сложно развивать проект в долгосрок, закрывать сложные технические темы и привлекать узких специалистов для разбора нестандартных ситуаций.",
+              "We strive to keep quality information accessible for everyone — from junior operators to chief engineers. Without audience support it is hard to develop the project long-term, cover complex technical topics and engage specialists for non-standard situations."
+            )}
           </p>
         </div>
 
-        {/* Directions */}
         <div className="mb-16">
-          <h2 className="font-serif text-2xl mb-8">Куда идут средства</h2>
+          <h2 className="font-serif text-2xl mb-8">{t("Куда идут средства", "Where the funds go")}</h2>
           <div className="space-y-4">
             {directions.map((item, idx) => (
               <div
@@ -115,38 +133,44 @@ const Support = () => {
           </div>
         </div>
 
-        {/* Card donation */}
         <div className="mb-6">
-          <h2 className="font-serif text-2xl mb-6">Перевод на карту</h2>
+          <h2 className="font-serif text-2xl mb-6">{t("Перевод на карту", "Card transfer")}</h2>
           <div className="border border-border rounded-2xl p-6 md:p-8 bg-card">
             <div className="flex items-center gap-3 mb-5">
               <div className="w-10 h-10 border border-border rounded-lg flex items-center justify-center shrink-0">
                 <Icon name="CreditCard" size={18} className="text-muted-foreground" />
               </div>
               <div>
-                <p className="text-xs text-muted-foreground">Сбербанк</p>
-                <p className="font-medium text-sm">Банковская карта</p>
+                <p className="text-xs text-muted-foreground">{t("Сбербанк", "Sberbank")}</p>
+                <p className="font-medium text-sm">{t("Банковская карта", "Bank card")}</p>
               </div>
             </div>
             <CardNumber />
             <p className="text-xs text-muted-foreground mt-4">
-              В комментарии к переводу можно указать «Поддержка coiledtubing.pro» — это поможет нам отслеживать поступления.
+              {t(
+                "В комментарии к переводу можно указать «Поддержка coiledtubing.pro» — это поможет нам отслеживать поступления.",
+                "In the transfer comment you can write «Support coiledtubing.pro» — this helps us track incoming donations."
+              )}
             </p>
           </div>
         </div>
 
-        {/* CTA */}
         <div className="bg-card border border-border rounded-3xl p-8 md:p-12 text-center">
-          <h2 className="font-serif text-2xl md:text-3xl mb-3">Другие форматы участия</h2>
+          <h2 className="font-serif text-2xl md:text-3xl mb-3">
+            {t("Другие форматы участия", "Other ways to participate")}
+          </h2>
           <p className="text-muted-foreground text-sm mb-8 max-w-lg mx-auto">
-            Экспертное сотрудничество, партнёрство или другие форматы — напишите нам.
+            {t(
+              "Экспертное сотрудничество, партнёрство или другие форматы — напишите нам.",
+              "Expert collaboration, partnership or other formats — write to us."
+            )}
           </p>
           <a
             href="mailto:info@coiledtubing.pro?subject=Поддержка проекта coiledtubing.pro"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
           >
             <Icon name="Mail" size={16} />
-            Написать на info@coiledtubing.pro
+            info@coiledtubing.pro
           </a>
         </div>
       </main>
@@ -155,7 +179,7 @@ const Support = () => {
         <div className="max-w-4xl mx-auto px-6 flex items-center justify-between gap-4 flex-wrap">
           <p className="text-xs text-muted-foreground">2026 COILEDTUBING.PRO</p>
           <Link to="/contacts" className="text-xs text-muted-foreground hover:text-foreground transition-colors">
-            Контакты
+            {t("Контакты", "Contacts")}
           </Link>
         </div>
       </footer>
